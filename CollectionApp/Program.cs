@@ -1,6 +1,7 @@
-﻿#define TestHashtable
+﻿#define TestQueue
 
 using System.Collections;
+using System.Collections.Generic;
 
 namespace CollectionApp
 {
@@ -38,7 +39,6 @@ namespace CollectionApp
     {
         public static void Main()
         {
-            #region List
 #if TestList
             List<Student> students = new() { new Student(1, "Joker"), new Student(3, "Panther"), new Student(2, "Skull") };
             students.Add(new Student(4, "Fox"));
@@ -47,16 +47,17 @@ namespace CollectionApp
             //students.Sort();
             //students.Sort(new StudentCompare());
             students.Sort();
-            foreach (var item in students)
-            {
-                Console.WriteLine(item);
-            }
+            //foreach (var item in students)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            students.ForEach(student => Console.WriteLine(student));
             Console.WriteLine($"Count: {students.Count}");
             Console.WriteLine($"Capacity: {students.Capacity}");
+            Student[] stuArr = students.ToArray();
+            Array.ForEach(stuArr, x => Console.WriteLine(x));
 #endif
-            #endregion
 
-            #region Hashtable
 #if TestHashtable
             Hashtable hashtable = new Hashtable();
             hashtable.Add(1, "Joker");
@@ -75,10 +76,8 @@ namespace CollectionApp
                 Console.WriteLine(item);
             }
 #endif
-#endregion
 
 #if TestDictionary
-            #region Dictionary
             Dictionary<int, string> dict = new Dictionary<int, string>();
             dict.Add(1, "Joker");
             dict.Add(0, "Mona");
@@ -87,7 +86,29 @@ namespace CollectionApp
             {
                 Console.WriteLine($"{item}: Key={item.Key}, Value={item.Value}");
             }
-            #endregion
+#endif
+
+#if TestSortedList
+            SortedList<int, string> sl = new SortedList<int, string>();
+            sl.Add(1, "Joker");
+            sl.Add(0, "Mona");
+            sl.Add(3, "Panther");
+            sl[2] = "Skull";
+            foreach (var item in sl)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine(sl[0]);
+            Console.WriteLine(sl.GetValueAtIndex(3));
+#endif
+
+#if TestQueue
+            Queue<string> strings = new Queue<string>();
+            strings.Enqueue("Mona");
+            strings.Enqueue("Joker");
+            strings.Enqueue("Skull");
+            string str = strings.Dequeue();
+            Console.WriteLine(str);
 #endif
         }
     }
