@@ -1,4 +1,4 @@
-﻿#define TestQueue
+﻿#define TestStack
 
 using System.Collections;
 using System.Collections.Generic;
@@ -109,6 +109,19 @@ namespace CollectionApp
             strings.Enqueue("Skull");
             string str = strings.Dequeue();
             Console.WriteLine(str);
+#endif
+
+#if TestStack
+            Stack<string> stack = new Stack<string>();
+            stack.Push("Mona");
+            stack.Push("Joker");
+            stack.Push("Skull");
+            stack.Push("Panther");
+            Console.WriteLine($"Pop item: {stack.Pop()}" );
+            foreach (var item in stack)
+            {
+                Console.WriteLine(item);
+            }
 #endif
         }
     }
