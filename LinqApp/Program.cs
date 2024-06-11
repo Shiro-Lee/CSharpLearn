@@ -107,24 +107,29 @@ namespace LinqApp
             IEnumerable<string> selected = students.Where(x=>x.Age == 17 && x.Sex == "Male").Select(x=>x.Name);
             PrintEnumerable(selected, "Male Freshmen");
 
-            selected = from Student student in students
+            selected = from student in students
                        where student.Age == 18 && student.Sex =="Female"
                        select student.Name;
             PrintEnumerable(selected, "Female Sophomore");
 
-            IEnumerable<IGrouping<string, Student>> group = from Student student in students 
-                                                            orderby (student.Age)
-                                                            group student by student.Sex into g
-                                                            select g;
-            foreach(IGrouping<string, Student> g in group)
+            IEnumerable<IGrouping<string, Student>> groups = from student in students 
+                                                             orderby student.Age
+                                                             group student by student.Sex into g
+                                                             select g;
+            foreach(IGrouping<string, Student> group in groups)
             {
-                Console.Write($"Group {g.Key}: ");
-                foreach (Student student in g)
+                Console.Write($"Group {group.Key}: ");
+                foreach (Student student in group)
                 {
                     Console.Write($"{student.Name} ");
                 }
                 Console.WriteLine();
             }
+
+            var q = from stu in students
+                    group stu by stu.Sex into g
+                    select new { g.Key, Avg = g.Average(x => x.Age).ToString("F2") };
+            PrintEnumerable(q, "Group Avg Age");
 #endif
         }
     }
