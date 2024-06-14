@@ -9,6 +9,7 @@ namespace GenericApp
 
         public MyGenericArray(int size) => _array = new T[size];
 
+
         public T GetAt(int index) => _array[index];
 
         public void SetAt(int index, T value) => _array[index] = value;
