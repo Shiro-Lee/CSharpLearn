@@ -27,9 +27,9 @@ namespace CollectionApp
 
     class StudentCompare : IComparer<Student>
     {
-        public int Compare(Student stu1, Student stu2)
+        public int Compare(Student? stu1, Student? stu2)
         {
-            return stu1.Id.CompareTo(stu2?.Id);
+            return stu1!.Id.CompareTo(stu2?.Id);
             throw new NotImplementedException();
         }
     }

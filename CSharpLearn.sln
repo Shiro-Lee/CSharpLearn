@@ -1,15 +1,14 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InheritanceApplication", "InheritanceApplication\InheritanceApplication.csproj", "{9C0EE909-15AD-4531-938C-FF89A112092F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolymorphismApplication", "PolymorphismApplication\PolymorphismApplication.csproj", "{FB33DDC2-70F4-49F8-A5EC-C44E1C673B11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolymorphismApplication", "PolymorphismApplication\PolymorphismApplication.csproj", "{FB33DDC2-70F4-49F8-A5EC-C44E1C673B11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayApplication", "ArrayApplication\ArrayApplication.csproj", "{CFC452AC-EF34-4AB5-9A28-62E95114D457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOvlApplication", "OperatorOvlApplication\OperatorOvlApplication.csproj", "{1CA9E317-8D2E-42D9-8ACC-A4FA8E5CEDC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OperatorOvlApplication", "OperatorOvlApplication\OperatorOvlApplication.csproj", "{1CA9E317-8D2E-42D9-8ACC-A4FA8E5CEDC2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegateApplication", "DelegateApplication\DelegateApplication.csproj", "{FB93A31F-A7B2-40D4-81A6-61BD052DF42A}"
 EndProject
@@ -37,6 +36,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerApp", "ServerApp\Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientApp", "ClientApp\ClientApp.csproj", "{9F5DF965-A0C6-4C70-AAFC-747A99E949C8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySqlApp", "MySqlApp\MySqlApp.csproj", "{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,8 +50,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|Any CPU.Build.0 = Debug|x64
-		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|x64.ActiveCfg = Debug|x64
-		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|x64.Build.0 = Debug|x64
+		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|x64.Build.0 = Debug|Any CPU
 		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|x86.ActiveCfg = Debug|x86
 		{9C0EE909-15AD-4531-938C-FF89A112092F}.Debug|x86.Build.0 = Debug|x86
 		{9C0EE909-15AD-4531-938C-FF89A112092F}.Release|Any CPU.ActiveCfg = Release|x64
@@ -73,8 +74,8 @@ Global
 		{FB33DDC2-70F4-49F8-A5EC-C44E1C673B11}.Release|x86.Build.0 = Release|x86
 		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|Any CPU.Build.0 = Debug|x64
-		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|x64.ActiveCfg = Debug|x64
-		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|x64.Build.0 = Debug|x64
+		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|x64.Build.0 = Debug|Any CPU
 		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|x86.ActiveCfg = Debug|x86
 		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Debug|x86.Build.0 = Debug|x86
 		{CFC452AC-EF34-4AB5-9A28-62E95114D457}.Release|Any CPU.ActiveCfg = Release|x64
@@ -251,6 +252,18 @@ Global
 		{9F5DF965-A0C6-4C70-AAFC-747A99E949C8}.Release|x64.Build.0 = Release|Any CPU
 		{9F5DF965-A0C6-4C70-AAFC-747A99E949C8}.Release|x86.ActiveCfg = Release|Any CPU
 		{9F5DF965-A0C6-4C70-AAFC-747A99E949C8}.Release|x86.Build.0 = Release|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Debug|x64.Build.0 = Debug|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Debug|x86.Build.0 = Debug|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Release|x64.ActiveCfg = Release|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Release|x64.Build.0 = Release|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Release|x86.ActiveCfg = Release|Any CPU
+		{FDABF8CF-18AF-40A0-B2DD-85E4311D449C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
