@@ -1,28 +1,18 @@
-﻿
-#define PI
-
-namespace TestApp
+﻿namespace TestApp
 {
-    class Publisher
-    {
-        public static void SayHello() => Console.WriteLine("Hello!");
-        public static void SayGoodbye() => Console.WriteLine("Goodbye!");
-    }
+	public class Program
+	{
+		static void Main(string[] args)
+		{
+			Console.WriteLine("Hello, World!");
+		}
 
-    class Program
-    {
-        public delegate void DoSth();
-        public event DoSth? SaySth;
-        public void ExecDoSth(DoSth sth) => sth.Invoke();
+		public static Task<T> ThrowTask<T>() where T : Exception, new() { throw new T(); }
 
-        public static void Main()
-        {
-            Program pro = new();
-            pro.SaySth += Publisher.SayHello;
-            pro.SaySth += Publisher.SayGoodbye;
-            pro.SaySth();
-            pro.SaySth.Invoke();
-            pro.ExecDoSth(pro.SaySth);
-        }
-    }
+		public int AddNum(int a, int b) => a + b;
+
+		public string CombineString(string str1, string str2) => string.Format("{0} {1}", str1, str2);
+
+		public bool IsWeekend(DayOfWeek day) => day == DayOfWeek.Saturday || day == DayOfWeek.Sunday;
+	}
 }

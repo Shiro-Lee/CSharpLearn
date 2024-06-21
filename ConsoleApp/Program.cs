@@ -1,10 +1,9 @@
-﻿#define PI
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TestApplication
+namespace ConsoleApp
 {
     class Book
     {
@@ -42,7 +41,7 @@ namespace TestApplication
         public int Age { get; set; } = 0;
     }
 
-    class Program
+    public class Program
     {
         enum Seasons { SPRING, SUMMER, AUTUMN, WINTER }
 
