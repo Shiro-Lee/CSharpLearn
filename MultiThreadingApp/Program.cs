@@ -1,4 +1,4 @@
-﻿#define TestMyThread
+﻿#define TestTask
 
 namespace MultiThreadingApp
 {
@@ -37,7 +37,8 @@ namespace MultiThreadingApp
         static void TestThreadParam(object? param)
         {
             int.TryParse(param?.ToString(), out int interval);
-            for (int i = 0; i < 10; i++)
+            Console.WriteLine($"间隔: {interval}ms");
+            for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine($"系统当前时间B:{DateTime.Now:HH:mm:ss}");
                 Thread.Sleep(interval);
@@ -107,9 +108,9 @@ namespace MultiThreadingApp
 #endif
 
 #if TestParameterizedThread
-            //Thread threadParam = new Thread(new ParameterizedThreadStart(TestThreadParam)); //带参方法线程
+            Thread threadParam = new Thread(new ParameterizedThreadStart(TestThreadParam)); //带参方法线程
             //threadParam.IsBackground = true;    //主线程执行完毕自动结束后台线程
-            //threadParam.Start(2000);
+            threadParam.Start(1500);
 #endif
 
 #if TestThreadPool
@@ -118,46 +119,42 @@ namespace MultiThreadingApp
 #endif
 
 #if TestTask
-            //Task task = new Task(TestThread);
-            //task.Start();
+			//Task task = new Task(TestThread);
+			//task.Start();
 
-            //Task<int> task2 = new(TestTask, 6);
-            //task2.Start();
+			//Task<int> task2 = new(TestTask, 6);
+			//task2.Start();
 
-            //Task.Run(() => { Console.WriteLine("Task Run"); });
+			//Task.Run(() => Console.WriteLine("Task Run"));
 
-            Action<object> action = (obj) =>
-            {
-                Console.WriteLine($"obj={obj}, TaskId={Task.CurrentId}, ThreadId={Thread.CurrentThread.ManagedThreadId}");
-            };
-
+			//将任务的创建与执行分开
+			Action<object?> action = (obj) => Console.WriteLine($"obj={obj}, TaskId={Task.CurrentId}, ThreadId={Thread.CurrentThread.ManagedThreadId}");
             Task t1 = new Task(action, "t1");
-            t1.Start();
-            Console.WriteLine($"t1 has been launched. (Main thread Id={Thread.CurrentThread.ManagedThreadId})");
+            t1.Start(); //Console.WriteLine($"t1 has been launched. (Main thread Id={Thread.CurrentThread.ManagedThreadId})");
             t1.Wait();
 
-            Task t2 = Task.Factory.StartNew(action, "t2");
-            t2.Wait();
+			//实例化任务时即让任务开始执行
+			Task t2 = Task.Factory.StartNew(action, "t2");
+			t2.Wait();
 
-            Task t3 = Task.Run(() =>
-            {
-                Console.WriteLine($"obj=t3, TaskId={Task.CurrentId}, ThreadId={Thread.CurrentThread.ManagedThreadId}");
-            });
-            t3.Wait();
+			//实例化任务时即让任务开始执行(简化Task.Factory.StartNew)
+			Task t3 = Task.Run(() => Console.WriteLine($"obj=t3, TaskId={Task.CurrentId}, ThreadId={Thread.CurrentThread.ManagedThreadId}"));
+			t3.Wait();
 
-            Task t4 = new Task(action, "t4");
+			//将实例化任务强制已同步执行
+			Task t4 = new Task(action, "t4");
             t4.RunSynchronously();
-            t4.Wait();
+			t4.Wait();
 
-            Task<int> t5 = Task.Run(() => { return 0; });
-            t5.Wait();
+			//等待任务结束并获取TResult类型的返回值（访问Result属性时会隐式调用Wait()方法）
+			Task<int> t5 = Task.Run(() => { return 0; });
             Console.WriteLine($"t5 returns: {t5.Result}");
 
 #endif
 
 #if TestMyThread
 
-            #region Thread
+			#region Thread
             //Thread t1 = new Thread(ListAddThread);
             //Thread t2 = new Thread(ListAddThread);
             //t1.Name = "线程1";
@@ -166,26 +163,26 @@ namespace MultiThreadingApp
             //t2.Start();
             //t1.Join();
             //t2.Join();
-            #endregion
-            #region Task
+			#endregion
+			#region Task
             //Task ts1 = new Task(ListAddThread);
             //Task ts2 = new Task(ListAddThread);
             //ts1.Start();
             //ts2.Start();
             //ts1.Wait();
             //ts2.Wait();
-            #endregion
+			#endregion
             //for (int i = 0;i < list.Count; i++)
             //{
             //    Console.Write($"{list[i]} ");
             //}
             //Console.WriteLine();
-            #region Task<TResult>
+			#region Task<TResult>
             Task<int> task = Task.Run(GetRetVal);
             int ret = task.Result;
             Console.WriteLine(ret);
-            #endregion
+			#endregion
 #endif
-        }
+		}
     }
 }
