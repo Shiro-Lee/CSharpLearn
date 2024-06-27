@@ -1,7 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using System.Data;
+﻿using System.Data;
+using System.Data.SqlClient;
 
-namespace MySqlApp
+namespace SqlServerApp
 {
     class Member
     {
@@ -11,25 +11,25 @@ namespace MySqlApp
         public int Age { get; set; } = 17;
         public double Height { get; set; } = double.NaN;
         public string School { get; set; } = string.Empty;
-        public string Arcana {  get; set; } = string.Empty;
+        public string Arcana { get; set; } = string.Empty;
     }
 
     internal class Program
     {
         static void Main(string[] args)
         {
-            MySqlConnectionStringBuilder builder = new()
+            SqlConnectionStringBuilder builder = new()
             {
-                UserID = "root",
-                Password = "1234",
-                Server = "localhost",
-                Database = "persona5"
+                DataSource = ".",
+                InitialCatalog = "persona5",
+                UserID = "sa",
+                Password = "SAMsun123",
             };
-            MySqlConnection connection = new(builder.ConnectionString);
+            SqlConnection connection = new(builder.ConnectionString);
             connection.Open();
 
-            MySqlCommand command = new MySqlCommand("INSERT INTO ThePhantoms (Name, CodeName, Sex, Age, Height, School, Arcana) " +
-                "VALUES (@Name, @CodeName, @Sex, @Age, @Height, @School, @Arcana)", 
+            SqlCommand command = new SqlCommand("INSERT INTO ThePhantoms (Name, CodeName, Sex, Age, Height, School, Arcana) " +
+                "VALUES (@Name, @CodeName, @Sex, @Age, @Height, @School, @Arcana)",
                 connection);
             command.Parameters.AddWithValue("@Name", "Ren Amamiya");
             command.Parameters.AddWithValue("@CodeName", "Joker");
@@ -38,12 +38,12 @@ namespace MySqlApp
             command.Parameters.AddWithValue("@Height", 175);
             command.Parameters.AddWithValue("@School", "Shujin Academy");
             command.Parameters.AddWithValue("@Arcana", "Fool");
-			int rows = command.ExecuteNonQuery();
+            int rows = command.ExecuteNonQuery();
 
             command = connection.CreateCommand();
             command.CommandText = "SELECT * FROM ThePhantoms";
             #region MySqlDataReader
-            //MySqlDataReader reader = command.ExecuteReader();
+            //SqlDataReader reader = command.ExecuteReader();
             //while (reader.Read())
             //{
             //    Member member = new Member()
@@ -58,7 +58,7 @@ namespace MySqlApp
             //    Console.WriteLine($"{member.Name} - {member.CodeName} - {member.Sex} - {member.Age} - {member.School} - {member.Arcana}");
             //}
             #endregion
-            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
             Console.WriteLine("Name\t\tCodeName\tSex\tAge");
